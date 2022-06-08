@@ -17,6 +17,8 @@
         <fileset id="fileset" name="ApplicationConfig" removed="false">
           <file>file://$USER_HOME$/IdeaProjects/spring-tutorial-mac/src/applicationConfig.xml</file>
           <file>file://$MODULE_DIR$/src/applicationContext.xml</file>
+          <file>file://$MODULE_DIR$/src/beanscope-applicationContext.xml</file>
+          <file>file://$MODULE_DIR$/src/beanLifeCycle-applicationContext.xml</file>
         </fileset>
       </configuration>
     </facet>
