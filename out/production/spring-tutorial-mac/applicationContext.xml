@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- define property file location -->
+    <context:property-placeholder location="classpath:sport.properties"/>
+
+    <!-- define the dependency -->
+    <bean id="myFortuneService"
+         class="com.jdb.springtestdemo.HappyFortuneService">
+    </bean>
+    <bean id="myRandomFortuneService" class="com.jdb.springtestdemo.RandomFortuneService" />
+    <bean id="randCoach" class="com.jdb.springtestdemo.TrackCoach">
+        <constructor-arg ref="myRandomFortuneService"/>
+    </bean>
+
+    <bean id="myCoach"
+        class="com.jdb.springtestdemo.BasketballCoach">
+        <constructor-arg ref="myFortuneService"/>          <!-- dependency injection -->
+    </bean>
+
+    <bean id="myCricketCoach"
+          class="com.jdb.springtestdemo.CricketCoach">
+        <!-- set up setter injection -->
+        <property name="fortuneService" ref="myRandomFortuneService" />
+
+        <!-- set up literal injections -->
+        <property name="emailAddress" value="${tester.email}" />
+        <property name="team" value="${tester.team}" />
+    </bean>
+
+    <bean id="myRandomCoach" class="com.jdb.springtestdemo.CricketCoach">
+        <constructor-arg ref="myRandomFortuneService"/>
+    </bean>
+</beans>
